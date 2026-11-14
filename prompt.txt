@@ -1,0 +1,10 @@
+Implemente o sistema de emissão de ingressos e check-in do DevFest em Go com endpoints HTTP (POST /ingressos para emitir e POST /ingressos/{id}/checkin para registrar entrada).
+
+Regras de negócio:
+1. Um lote tem capacidade máxima de 10 ingressos e o estoque nunca pode ficar negativo.
+2. Cada ingresso recebe um identificador único e pertence a um participante (Nome, CPF e E-mail).
+3. Não é permitido emitir mais de um ingresso para o mesmo CPF nem para o mesmo e-mail.
+4. O ingresso é pessoal e estritamente intransferível.
+5. O check-in na portaria só pode ser realizado uma única vez por ingresso; uma segunda tentativa deve ser bloqueada com erro.
+
+Crie também os testes automatizados para validar o sistema.

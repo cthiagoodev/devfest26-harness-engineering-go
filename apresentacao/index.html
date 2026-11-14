@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap"
     rel="stylesheet"
   />
   <link rel="stylesheet" href="style.css" />
@@ -69,40 +69,59 @@
 
       <!-- SLIDE 1: CAPA -->
       <section class="slide slide-cover active" data-slide="1" data-title="Capa — Harness Engineering">
-        <div class="slide-inner cover-layout">
-          <span class="pill pill-cyan stagger-1">DEVFEST FORTALEZA 2026 • ENGENHARIA DE SOFTWARE</span>
-          <h1 class="cover-title stagger-2">
-            Impulsionando seu Desenvolvimento:<br />
-            <span class="gradient-text">Harness Engineering</span> com Go e Antigravity
-          </h1>
-          <p class="cover-subtitle stagger-3">
-            Do Vibe Coding às cegas à engenharia determinística com agentes
-          </p>
-          <div class="speaker-card stagger-4">
-            <div class="speaker-dot"></div>
-            <div>
-              <strong>Thiago Sousa</strong>
-              <span>Desenvolvedor Mobile no Banco BV • Fundador da comunidade Mobile Devs Ceará</span>
+        <div class="cover-scattered-logos" aria-hidden="true">
+          <img src="assets/antigravity.svg" alt="" class="scatter-logo scatter-1" />
+          <img src="assets/go.svg" alt="" class="scatter-logo scatter-2" />
+          <img src="assets/google.svg" alt="" class="scatter-logo scatter-3" />
+          <img src="assets/devfest.svg" alt="" class="scatter-logo scatter-4" />
+        </div>
+        <div class="slide-inner cover-grid">
+          <div class="cover-main">
+            <span class="pill pill-cyan stagger-1">DEVFEST FORTALEZA 2026 • ENGENHARIA DE SOFTWARE</span>
+            <h1 class="cover-title stagger-2">
+              Impulsionando seu Desenvolvimento:<br />
+              <span class="gradient-text">Harness Engineering</span> com Go e Antigravity
+            </h1>
+            <div class="speaker-card stagger-3">
+              <div class="speaker-dot"></div>
+              <div>
+                <strong>Thiago Sousa</strong>
+                <span>Desenvolvedor Mobile no Banco BV • Fundador da comunidade Mobile Devs Ceará</span>
+              </div>
             </div>
           </div>
-          <div class="cover-links stagger-5">
+
+          <div class="cover-qrs stagger-4">
             <a
-              class="repo-footer repo-link"
+              class="card qr-mini-card card-cyan"
               href="https://cthiagoodev.github.io/devfest26-harness-engineering-go"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <span class="mono-label">SLIDES</span>
-              <code>cthiagoodev.github.io/devfest26-harness-engineering-go ↗</code>
+              <div class="qr-frame qr-frame-sm">
+                <img src="qr/slides.svg" alt="QR Code Slides Online" />
+              </div>
+              <div class="qr-mini-meta">
+                <span class="card-badge badge-cyan">ACOMPANHE AO VIVO</span>
+                <strong>Slides Online ↗</strong>
+                <code>cthiagoodev.github.io/...</code>
+              </div>
             </a>
+
             <a
-              class="repo-footer repo-link"
+              class="card qr-mini-card card-emerald"
               href="https://github.com/cthiagoodev/devfest26-harness-engineering-go"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <span class="mono-label">GITHUB</span>
-              <code>github.com/cthiagoodev/devfest26-harness-engineering-go ↗</code>
+              <div class="qr-frame qr-frame-sm">
+                <img src="qr/github.svg" alt="QR Code Repositório GitHub" />
+              </div>
+              <div class="qr-mini-meta">
+                <span class="card-badge badge-emerald">CÓDIGO-FONTE</span>
+                <strong>Repositório GitHub ↗</strong>
+                <code>github.com/cthiagoodev/...</code>
+              </div>
             </a>
           </div>
         </div>
@@ -435,15 +454,39 @@ ok  com-harness/domain   0.014s</code></pre>
             </article>
           </div>
 
-          <a
-            class="repo-footer repo-link stagger-3"
-            href="https://github.com/cthiagoodev/devfest26-harness-engineering-go"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span class="mono-label">REPOSITÓRIO</span>
-            <code>github.com/cthiagoodev/devfest26-harness-engineering-go ↗</code>
-          </a>
+          <div class="grid-2 stagger-3">
+            <a
+              class="card qr-mini-card card-cyan"
+              href="https://cthiagoodev.github.io/devfest26-harness-engineering-go"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="qr-frame qr-frame-sm">
+                <img src="qr/slides.svg" alt="QR Code Slides Online" />
+              </div>
+              <div class="qr-mini-meta">
+                <span class="card-badge badge-cyan">SLIDES ONLINE</span>
+                <strong>cthiagoodev.github.io ↗</strong>
+                <code>/devfest26-harness-engineering-go</code>
+              </div>
+            </a>
+
+            <a
+              class="card qr-mini-card card-emerald"
+              href="https://github.com/cthiagoodev/devfest26-harness-engineering-go"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="qr-frame qr-frame-sm">
+                <img src="qr/github.svg" alt="QR Code Repositório GitHub" />
+              </div>
+              <div class="qr-mini-meta">
+                <span class="card-badge badge-emerald">REPOSITÓRIO GITHUB</span>
+                <strong>github.com/cthiagoodev ↗</strong>
+                <code>/devfest26-harness-engineering-go</code>
+              </div>
+            </a>
+          </div>
         </div>
       </section>
 
