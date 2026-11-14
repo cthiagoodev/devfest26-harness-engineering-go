@@ -880,6 +880,21 @@ a.card:hover {
   background: rgba(0, 173, 216, 0.1);
 }
 
+.cover-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cover-links .repo-footer {
+  padding: 7px 12px;
+  font-size: clamp(0.72rem, 0.9vw, 0.84rem);
+}
+
+.thanks-links {
+  justify-content: center;
+}
+
 /* Slide 15: Agradecimento e QR Codes */
 .qr-card {
   align-items: center;
