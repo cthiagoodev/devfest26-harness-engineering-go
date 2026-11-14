@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harness Engineering com Go e Antigravity — DevFest Fortaleza 2026</title>
+  <meta
+    name="description"
+    content="Do Vibe Coding às cegas à engenharia determinística com agentes. Material oficial da palestra de Thiago Sousa no DevFest Fortaleza 2026."
+  />
+  <meta property="og:title" content="Harness Engineering com Go e Antigravity — DevFest Fortaleza 2026" />
+  <meta
+    property="og:description"
+    content="Agent = Model + Harness. Guias (Feedforward), Sensores determinísticos na CPU (Feedback) e DDD na prática."
+  />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="mode-slides">
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-scanlines" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow-cyan" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow-blue" aria-hidden="true"></div>
+
+  <!-- Barra de progresso no topo -->
+  <div class="progress-track" aria-hidden="true">
+    <div class="progress-fill" id="progress-fill"></div>
+  </div>
+
+  <!-- Barra superior estilo HUD / Site -->
+  <header class="hud-bar">
+    <div class="hud-left">
+      <span class="hud-status-dot" aria-hidden="true"></span>
+      <span class="hud-title">DEVFEST_FORTALEZA_2026 // HARNESS_ENG</span>
+    </div>
+    <nav class="hud-actions" aria-label="Modos e navegação">
+      <button type="button" class="hud-btn" id="btn-index" title="Abrir índice (I)">
+        Índice
+      </button>
+      <button type="button" class="hud-btn" id="btn-mode" title="Alternar entre Slides e Site (M)">
+        Modo Site
+      </button>
+      <button type="button" class="hud-btn" id="btn-fullscreen" title="Tela cheia (F)">
+        Tela cheia
+      </button>
+    </nav>
+  </header>
+
+  <!-- Gaveta de Índice rápido -->
+  <aside class="index-drawer" id="index-drawer" aria-hidden="true" aria-label="Índice de slides">
+    <div class="index-panel">
+      <div class="index-header">
+        <span class="mono-label">SYS.INDEX // 15 SLIDES</span>
+        <button type="button" class="hud-btn" id="btn-close-index" aria-label="Fechar índice">✕</button>
+      </div>
+      <ol class="index-list" id="index-list"></ol>
+    </div>
+  </aside>
+
+  <!-- Palco 16:9 (Modo Slides) / Página contínua (Modo Site) -->
+  <main class="deck-viewport">
+    <div class="deck-stage" id="deck-stage">
+
+      <!-- SLIDE 1: CAPA -->
+      <section class="slide slide-cover active" data-slide="1" data-title="Capa — Harness Engineering">
+        <div class="slide-inner cover-layout">
+          <span class="pill pill-cyan stagger-1">DEVFEST FORTALEZA 2026 • ENGENHARIA DE SOFTWARE</span>
+          <h1 class="cover-title stagger-2">
+            Impulsionando seu Desenvolvimento:<br />
+            <span class="gradient-text">Harness Engineering</span> com Go e Antigravity
+          </h1>
+          <p class="cover-subtitle stagger-3">
+            Do Vibe Coding às cegas à engenharia determinística com agentes
+          </p>
+          <div class="speaker-card stagger-4">
+            <div class="speaker-dot"></div>
+            <div>
+              <strong>Thiago Sousa</strong>
+              <span>Desenvolvedor Mobile no Banco BV • Fundador da comunidade Mobile Devs Ceará</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 2: DIVISOR PARTE 01 -->
+      <section class="slide slide-divider" data-slide="2" data-title="Parte 01 • Na Prática">
+        <div class="slide-inner divider-layout">
+          <span class="divider-number stagger-1">01</span>
+          <span class="pill pill-blue stagger-2">PARTE 01 • NA PRÁTICA</span>
+          <h2 class="divider-title stagger-3">Construindo o Primeiro Projeto</h2>
+          <p class="divider-subtitle stagger-4">Go + Google Antigravity + Harness ao vivo</p>
+        </div>
+      </section>
+
+      <!-- SLIDE 3: EXPERIMENTO AO VIVO -->
+      <section class="slide" data-slide="3" data-title="Experimento: sem-harness/ vs. com-harness/">
+        <div class="slide-inner">
+          <div class="slide-header stagger-1">
+            <span class="eyebrow">PARTE 01 • EXPERIMENTO AO VIVO</span>
+            <h2><code>sem-harness/</code> vs. <code>com-harness/</code></h2>
+          </div>
+
+          <div class="grid-2 comparison-grid">
+            <article class="card card-danger stagger-2">
+              <div class="card-badge badge-danger">sem-harness/ • Vibe Coding</div>
+              <h3>Pedido direto sem regras</h3>
+              <ul class="bullet-list">
+                <li>Camadas misturadas e acoplamento acidental</li>
+                <li>Bordas de entrada e erros sem validação consistente</li>
+                <li>Revisão manual exaustiva para caçar regressões</li>
+              </ul>
+              <pre class="code-box"><code>// Prompt livre, sem contrato:
+"Cria uma API em Go pra mim..."
+// Resultado: funciona no happy path, quebra na borda</code></pre>
+            </article>
+
+            <article class="card card-emerald stagger-3">
+              <div class="card-badge badge-emerald">com-harness/ • Engenharia</div>
+              <h3>Regras enxutas + Sensores na CPU</h3>
+              <ul class="bullet-list">
+                <li><code>AGENTS.md</code> enxuto (&lt; 60 linhas) guiando o agente</li>
+                <li>Fronteiras claras antes da primeira linha de código</li>
+                <li>Sensores determinísticos rodando no Antigravity</li>
+              </ul>
+              <pre class="code-box"><code>$ go vet ./...
+$ go test -race ./...
+ok  com-harness/domain   0.014s</code></pre>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 4: DIVISOR PARTE 02 -->
+      <section class="slide slide-divider" data-slide="4" data-title="Parte 02 • Fundamentos">
+        <div class="slide-inner divider-layout">
+          <span class="divider-number stagger-1">02</span>
+          <span class="pill pill-cyan stagger-2">PARTE 02 • FUNDAMENTOS</span>
+          <h2 class="divider-title stagger-3">O Básico de Harness Engineering</h2>
+          <p class="divider-subtitle stagger-4">
+            Baseado em Birgitta Böckeler (Thoughtworks / MartinFowler.com, abril de 2026)
+          </p>
+        </div>
+      </section>
+
+      <!-- SLIDE 5: O PROBLEMA -->
+      <section class="slide" data-slide="5" data-title="O Problema: Vibe Coding & Review Toil">
+        <div class="slide-inner">
+          <div class="slide-header stagger-1">
+            <span class="eyebrow">PARTE 02 • O PROBLEMA</span>
+            <h2>Vibe Coding &amp; Review Toil</h2>
+          </div>
+
+          <div class="grid-3">
+            <article class="card stagger-2">
+              <div class="card-icon icon-blue">01</div>
+              <h3>Natureza Probabilística</h3>
+              <p>LLMs pensam em tokens e são <strong>não-determinísticos</strong>. O mesmo prompt pode gerar estruturas diferentes a cada execução.</p>
+            </article>
+
+            <article class="card stagger-3">
+              <div class="card-icon icon-amber">02</div>
+              <h3>Review Toil</h3>
+              <p>O cansaço cognitivo de revisar centenas de linhas geradas para caçar erros bobos de arquitetura, borda ou concorrência.</p>
+            </article>
+
+            <article class="card stagger-4">
+              <div class="card-icon icon-danger">03</div>
+              <h3>Síndrome de "Babá de IA"</h3>
+              <p>Sem confiança no processo nem validação automática, o desenvolvedor perde velocidade conferindo cada vírgula manualmente.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 6: A EQUAÇÃO -->
+      <section class="slide" data-slide="6" data-title="A Equação: Agent = Model + Harness">
+        <div class="slide-inner equation-layout">
+          <div class="slide-header stagger-1">
+            <span class="eyebrow">PARTE 02 • O CONCEITO CENTRAL</span>
+            <h2>A Equação Fundamental</h2>
+          </div>
+
+          <div class="equation-hero stagger-2" aria-label="Agent equals Model plus Harness">
+            <span class="eq-agent">Agent</span>
+            <span class="eq-op">=</span>
+            <span class="eq-model">Model</span>
+            <span class="eq-op">+</span>
+            <span class="eq-harness">Harness</span>
+          </div>
+
+          <div class="grid-2 stagger-3">
+            <article class="card">
+              <div class="card-badge badge-blue">Model (Gemini)</div>
+              <h3>A força e o raciocínio</h3>
+              <p>Traz conhecimento amplo, síntese de código e capacidade de resolver problemas — mas precisa de direção para o seu contexto.</p>
+            </article>
+            <article class="card card-cyan">
+              <div class="card-badge badge-cyan">Outer Harness (Arreio / Rédea)</div>
+              <h3>Direção e autocorreção</h3>
+              <p>O conjunto de regras e sensores do projeto que guia o agente para acertar de primeira e se corrigir sozinho quando erra.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 7: GUIAS VS SENSORES -->
+      <section class="slide" data-slide="7" data-title="Guias (Feedforward) vs. Sensores (Feedback)">
+        <div class="slide-inner">
+          <div class="slide-header stagger-1">
+            <span class="eyebrow">PARTE 02 • OS DOIS PILARES DO HARNESS</span>
+            <h2>Guias (Feedforward) vs. Sensores (Feedback)</h2>
+          </div>
+
+          <div class="grid-2">
+            <article class="card card-blue stagger-2">
+              <div class="card-badge badge-blue">FEEDFORWARD • ANTES DE AGIR</div>
+              <h3>Guias</h3>
+              <p>Convenções claras em <code>AGENTS.md</code> e templates que direcionam o agente <strong>antes</strong> da primeira linha de código.</p>
+              <ul class="bullet-list">
+                <li>Limites de camadas e dependências</li>
+                <li>Padrões de nomenclatura e estrutura</li>
+                <li>Restrições explícitas do projeto</li>
+              </ul>
+            </article>
+
+            <article class="card card-emerald stagger-3">
+              <div class="card-badge badge-emerald">FEEDBACK • DEPOIS DE AGIR</div>
+              <h3>Sensores</h3>
+              <p>Compilador, testes e linters rodando na sequência. Quando o erro já ensina como corrigir, vira uma <strong>"injeção de prompt positiva"</strong>.</p>
+              <ul class="bullet-list">
+                <li><code>go build</code>, <code>go vet</code> e <code>go test -race</code></li>
+                <li>Mensagens de erro acionáveis para o agente</li>
+                <li>Ciclo fechado de correção autônoma</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 8: COMPUTACIONAL VS INFERENCIAL & STEERING LOOP -->
+      <section class="slide" data-slide="8" data-title="Computacional vs. Inferencial & Steering Loop">
+        <div class="slide-inner">
+          <div class="slide-header stagger-1">
+            <span class="eyebrow">PARTE 02 • ECONOMIA DE TOKENS &amp; QUALIDADE</span>
+            <h2>Computacional vs. Inferencial &amp; The Steering Loop</h2>
+          </div>
+
+          <div class="grid-2 compact-grid stagger-2">
+            <article class="card card-emerald">
+              <div class="card-badge badge-emerald">COMPUTACIONAL • CPU (ms e grátis)</div>
+              <p><code>go build</code>, <code>go vet</code> e <code>go test</code> rodando a cada mudança.</p>
+              <p class="highlight-rule">Regra de ouro: não gaste token validando o que a CPU valida.</p>
+            </article>
+
+            <article class="card card-blue">
+              <div class="card-badge badge-blue">INFERENCIAL • LLM/GPU (s e pago)</div>
+              <p>Revisão semântica (<em>LLM as a judge</em>) reservada para clareza de domínio, design e intenção de negócio.</p>
+            </article>
+          </div>
+
+          <div class="steering-panel stagger-3" id="steering-panel">
+            <div class="steering-header">
+              <span class="mono-label">THE STEERING LOOP (clique ou observe o ciclo)</span>
+              <span class="steering-caption" id="steering-caption">Guias direcionam o agente antes da execução</span>
+            </div>
+            <div class="steering-flow" role="group" aria-label="Etapas do Steering Loop">
+              <button type="button" class="loop-node active" data-step="0" data-caption="Guias (AGENTS.md) definem fronteiras antes da primeira linha">
+                <span class="node-kicker">01</span>
+                <strong>Guias</strong>
+                <small>Feedforward</small>
+              </button>
+              <span class="loop-arrow" aria-hidden="true">→</span>
+              <button type="button" class="loop-node" data-step="1" data-caption="Agente gera código respeitando o contexto delimitado">
+                <span class="node-kicker">02</span>
+                <strong>Agente</strong>
+                <small>Model + Context</small>
+              </button>
+              <span class="loop-arrow" aria-hidden="true">→</span>
+              <button type="button" class="loop-node" data-step="2" data-caption="Sensores na CPU (go vet / go test -race) validam em milissegundos">
+                <span class="node-kicker">03</span>
+                <strong>Sensores CPU</strong>
+                <small>Determinístico</small>
+              </button>
+              <span class="loop-arrow" aria-hidden="true">→</span>
+              <button type="button" class="loop-node" data-step="3" data-caption="Erro acionável vira feedback positivo e ajusta a próxima iteração">
+                <span class="node-kicker">04</span>
+                <strong>Ajuste</strong>
+                <small>Autocorreção</small>
+              </button>
+            </div>
+          </div>
+
+          <blockquote class="quote-bar stagger-4">
+            <p>"Eu não reviso código de agente linha a linha; eu meço cobertura de testes, dependências e complexidade."</p>
+            <cite>— Uncle Bob Martin</cite>
+          </blockquote>
+        </div>
+      </section>
+
+      <!-- SLIDE 9: DIVISOR PARTE 03 -->
+      <section class="slide slide-divider" data-slide="9" data-title="Parte 03 • DDD & O Dev Decisor">
+        <div class="slide-inner divider-layout">
+          <span class="divider-number stagger-1">03</span>
+          <span class="pill pill-emerald stagger-2">PARTE 03 • DDD &amp; O DEV DECISOR</span>
+          <h2 class="divider-title stagger-3">Domain-Driven Design &amp; O Dev Decisor</h2>
+          <p class="divider-subtitle stagger-4">Evitando a Big Ball of Mud com fronteiras claras</p>
+        </div>
+      </section>
+
+      <!-- SLIDE 10: SUBDOMINIOS, BOUNDED CONTEXTS E LINGUAGEM UBIQUA -->
+      <section class="slide" data-slide="10" data-title="Subdomínios, Bounded Contexts e Linguagem Ubíqua">
+        <div class="slide-inner">
+          <div class="slide-header stagger-1">
+            <span class="eyebrow">PARTE 03 • ARQUITETURA PARA AGENTES</span>
+            <h2>Subdomínios, Bounded Contexts e Linguagem Ubíqua</h2>
+          </div>
+
+          <div class="grid-3">
+            <article class="card card-cyan stagger-2">
+              <div class="card-badge badge-cyan">CORE DOMAIN</div>
+              <h3>100% Decisão Humana</h3>
+              <p>Onde está o diferencial competitivo e o dinheiro do negócio. A modelagem e as regras críticas não são terceirizadas.</p>
+            </article>
+
+            <article class="card card-blue stagger-3">
+              <div class="card-badge badge-blue">GENERIC &amp; SUPPORTING</div>
+              <h3>Delegados com Cercado</h3>
+              <p>Subdomínios genéricos e de suporte são delegados ao agente, sempre cercado por Guias claros e Sensores automáticos.</p>
+            </article>
+
+            <article class="card card-emerald stagger-4">
+              <div class="card-badge badge-emerald">AGENTS.md</div>
+              <h3>Bounded Contexts + Linguagem Ubíqua</h3>
+              <p>Cercados que impedem pacotes de se misturarem e um vocabulário único que elimina alucinações semânticas.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 11: DIVISOR PARTE 04 -->
+      <section class="slide slide-divider" data-slide="11" data-title="Parte 04 • O Novo Posicionamento">
+        <div class="slide-inner divider-layout">
+          <span class="divider-number stagger-1">04</span>
+          <span class="pill pill-blue stagger-2">PARTE 04 • O NOVO POSICIONAMENTO</span>
+          <h2 class="divider-title stagger-3">Não Dá Mais Para Ficar Só no Código</h2>
+          <p class="divider-subtitle stagger-4">O desenvolvedor mais perto do negócio, com autonomia e visão de arquiteto</p>
+        </div>
+      </section>
+
+      <!-- SLIDE 12: ENGENHEIRO VS VIBE CODER -->
+      <section class="slide" data-slide="12" data-title="Engenheiro vs. Vibe Coder">
+        <div class="slide-inner">
+          <div class="slide-header stagger-1">
+            <span class="eyebrow">PARTE 04 • O NOVO FOCO DE ESTUDO</span>
+            <h2>Engenheiro vs. Vibe Coder</h2>
+          </div>
+
+          <div class="grid-2x2">
+            <article class="card stagger-2">
+              <h3>Onde gastar tokens vs. agir na mão</h3>
+              <p>Correções simples são mais rápidas direto no teclado; a IA acelera estrutura, boilerplate e geração de testes.</p>
+            </article>
+
+            <article class="card stagger-3">
+              <h3>Feeling macro de negócio</h3>
+              <p>Entender o produto e antecipar mudanças de regra antes mesmo que o problema chegue ao código.</p>
+            </article>
+
+            <article class="card card-cyan stagger-4">
+              <h3>Você vira literalmente o Arquiteto</h3>
+              <p>Teoria (DDD, Arquitetura, Invariantes) aplicada na prática, com legibilidade inegociável do código.</p>
+            </article>
+
+            <article class="card card-emerald stagger-5">
+              <h3>Impacto real no dia a dia</h3>
+              <p><em>Shift Quality Left</em>, economia de tokens na CPU e <strong>80% do tempo</strong> focado no negócio.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 13: DIVISOR PARTE 05 -->
+      <section class="slide slide-divider" data-slide="13" data-title="Parte 05 • Sem Torcida Organizada">
+        <div class="slide-inner divider-layout">
+          <span class="divider-number stagger-1">05</span>
+          <span class="pill pill-cyan stagger-2">PARTE 05 • POR QUE GO E GOOGLE ANTIGRAVITY?</span>
+          <h2 class="divider-title stagger-3">Sem Torcida Organizada</h2>
+          <p class="divider-subtitle stagger-4">A sinceridade sobre a escolha das ferramentas — e por que o Harness é universal</p>
+        </div>
+      </section>
+
+      <!-- SLIDE 14: O HARNESS É UNIVERSAL -->
+      <section class="slide" data-slide="14" data-title="O Harness é Universal">
+        <div class="slide-inner closing-layout">
+          <div class="slide-header stagger-1">
+            <span class="eyebrow">PARTE 05 • VISÃO AGNÓSTICA</span>
+            <h2>O Harness é Universal</h2>
+          </div>
+
+          <div class="grid-2 stagger-2">
+            <article class="card card-cyan">
+              <div class="card-badge badge-cyan">POR QUE GO + ANTIGRAVITY NA DEMO</div>
+              <p>Ferramentas do meu dia a dia com feedback em milissegundos (<code>go vet</code> / <code>go test -race</code>) e fluxo agêntico integrado (Editor + Terminal + Browser).</p>
+            </article>
+
+            <article class="card card-emerald">
+              <div class="card-badge badge-emerald">ACABOU A ERA DE ESCOLHER LADOS</div>
+              <p>O padrão funciona com qualquer IA (Gemini, Claude, Codex, Copilot) e qualquer stack (Flutter/Dart, TS, Java, Python, Rust).</p>
+            </article>
+          </div>
+
+          <a
+            class="repo-footer repo-link stagger-3"
+            href="https://github.com/cthiagoodev/devfest-fortaleza-2026-harness-go-antigravity"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="mono-label">REPOSITÓRIO</span>
+            <code>github.com/cthiagoodev/devfest-fortaleza-2026-harness-go-antigravity ↗</code>
+          </a>
+        </div>
+      </section>
+
+      <!-- SLIDE 15: AGRADECIMENTO + QR CODES -->
+      <section class="slide" data-slide="15" data-title="Obrigado! — Links e Comunidade">
+        <div class="slide-inner thanks-layout">
+          <div class="slide-header stagger-1">
+            <span class="eyebrow">DEVFEST FORTALEZA 2026</span>
+            <h2>Muito obrigado! <span class="gradient-text">Vamos conectar?</span></h2>
+          </div>
+
+          <div class="grid-4 stagger-2">
+            <a
+              class="card qr-card card-emerald"
+              href="https://chat.whatsapp.com/FrD3kbmvW5bB2hMqZBlwyA"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="qr-frame">
+                <img src="qr/whatsapp.svg" alt="QR Code WhatsApp Mobile Devs Ceará" />
+              </div>
+              <div class="card-badge badge-emerald">COMUNIDADE</div>
+              <h3>WhatsApp</h3>
+              <p class="qr-handle">Mobile Devs Ceará ↗</p>
+            </a>
+
+            <a
+              class="card qr-card card-danger"
+              href="https://www.youtube.com/@mobiledevsceara"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="qr-frame">
+                <img src="qr/youtube.svg" alt="QR Code YouTube Mobile Devs Ceará" />
+              </div>
+              <div class="card-badge badge-danger">YOUTUBE</div>
+              <h3>Canal</h3>
+              <p class="qr-handle">@mobiledevsceara ↗</p>
+            </a>
+
+            <a
+              class="card qr-card card-cyan"
+              href="https://x.com/thiagoodev"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="qr-frame">
+                <img src="qr/x.svg" alt="QR Code X @thiagoodev" />
+              </div>
+              <div class="card-badge badge-cyan">X / TWITTER</div>
+              <h3>Perfil</h3>
+              <p class="qr-handle">@thiagoodev ↗</p>
+            </a>
+
+            <a
+              class="card qr-card card-blue"
+              href="https://www.linkedin.com/in/thiagoodev"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="qr-frame">
+                <img src="qr/linkedin.svg" alt="QR Code LinkedIn Thiago Sousa" />
+              </div>
+              <div class="card-badge badge-blue">LINKEDIN</div>
+              <h3>Conexão</h3>
+              <p class="qr-handle">/in/thiagoodev ↗</p>
+            </a>
+          </div>
+
+          <p class="thanks-note stagger-3">
+            Thiago Sousa — Obrigado pela presença e bora construir com engenharia!
+          </p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Rodapé discreto com navegação e contador -->
+  <footer class="deck-controls" aria-label="Controles da apresentação">
+    <div class="controls-left">
+      <span class="deck-brand">← → navegar • M modo site • F tela cheia</span>
+    </div>
+    <div class="controls-center">
+      <button type="button" class="nav-btn" id="btn-prev" aria-label="Slide anterior" title="Slide anterior (←)">←</button>
+      <span class="slide-counter" id="slide-counter" aria-live="polite">01 / 15</span>
+      <button type="button" class="nav-btn" id="btn-next" aria-label="Próximo slide" title="Próximo slide (→ ou Espaço)">→</button>
+    </div>
+    <div class="controls-right">
+      <span class="deck-brand">GitHub Pages Ready</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
